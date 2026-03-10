@@ -1,0 +1,16 @@
+{"grid":100,"threads":1,"searches":1000,"runtime":0.114317,"avg_time":0.000114317,"paths_per_second":8747.59,"total_nodes":2078947,"avg_nodes":2078.95,"path_length":56108}
+{"grid":100,"threads":2,"searches":1000,"runtime":0.0576719,"avg_time":5.76719e-05,"paths_per_second":17339.5,"total_nodes":2161215,"avg_nodes":2161.22,"path_length":54754}
+{"grid":100,"threads":4,"searches":1000,"runtime":0.0332248,"avg_time":3.32248e-05,"paths_per_second":30098,"total_nodes":2156721,"avg_nodes":2156.72,"path_length":55387}
+{"grid":100,"threads":8,"searches":1000,"runtime":0.0180231,"avg_time":1.80231e-05,"paths_per_second":55484.2,"total_nodes":2035602,"avg_nodes":2035.6,"path_length":56990}
+{"grid":200,"threads":1,"searches":1000,"runtime":0.418783,"avg_time":0.000418783,"paths_per_second":2387.87,"total_nodes":7946693,"avg_nodes":7946.69,"path_length":109611}
+{"grid":200,"threads":2,"searches":1000,"runtime":0.209757,"avg_time":0.000209757,"paths_per_second":4767.42,"total_nodes":7898218,"avg_nodes":7898.22,"path_length":108485}
+{"grid":200,"threads":4,"searches":1000,"runtime":0.113615,"avg_time":0.000113615,"paths_per_second":8801.64,"total_nodes":8232487,"avg_nodes":8232.49,"path_length":109562}
+{"grid":200,"threads":8,"searches":1000,"runtime":0.074362,"avg_time":7.4362e-05,"paths_per_second":13447.7,"total_nodes":7807329,"avg_nodes":7807.33,"path_length":108293}
+{"grid":300,"threads":1,"searches":1000,"runtime":0.895511,"avg_time":0.000895511,"paths_per_second":1116.68,"total_nodes":16930171,"avg_nodes":16930.2,"path_length":166319}
+{"grid":300,"threads":2,"searches":1000,"runtime":0.467882,"avg_time":0.000467882,"paths_per_second":2137.29,"total_nodes":17442651,"avg_nodes":17442.7,"path_length":159592}
+{"grid":300,"threads":4,"searches":1000,"runtime":0.255454,"avg_time":0.000255454,"paths_per_second":3914.6,"total_nodes":18596052,"avg_nodes":18596.1,"path_length":159393}
+{"grid":300,"threads":8,"searches":1000,"runtime":0.16761,"avg_time":0.00016761,"paths_per_second":5966.23,"total_nodes":18068540,"avg_nodes":18068.5,"path_length":165466}
+{"grid":500,"threads":1,"searches":1000,"runtime":2.57226,"avg_time":0.00257226,"paths_per_second":388.763,"total_nodes":47336946,"avg_nodes":47336.9,"path_length":280642}
+{"grid":500,"threads":2,"searches":1000,"runtime":1.40947,"avg_time":0.00140947,"paths_per_second":709.485,"total_nodes":48638574,"avg_nodes":48638.6,"path_length":273040}
+{"grid":500,"threads":4,"searches":1000,"runtime":0.741444,"avg_time":0.000741444,"paths_per_second":1348.72,"total_nodes":49620084,"avg_nodes":49620.1,"path_length":276779}
+{"grid":500,"threads":8,"searches":1000,"runtime":0.47766,"avg_time":0.00047766,"paths_per_second":2093.54,"total_nodes":50447434,"avg_nodes":50447.4,"path_length":275202}
