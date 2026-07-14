@@ -251,3 +251,31 @@ This system demonstrates techniques used in:
 ---
 
 ## License
+
+
+
+
+
+## Difficulties while making project
+- How can multiple A* searches run simulatneously without currupting each others data
+   - Instead of sharing search state, each worker thread gets its own  
+      - Workspace
+      - g-cost array
+      - parent array
+      - visit markers
+      - priority queues
+
+- Dynamic Memory Allocation
+   - initialy we were allocating 
+      ```bash
+      std::vector<int> parent;
+      std::vector<float> cost;
+      ```
+      for every search 
+      so for thousands of allocations and thousands of frees, Memomy allocation becomes bottleneck
+   
+   - Solution:
+      - Allocate once and use forever
+      - This is why thread local workspace exists 
+   
+

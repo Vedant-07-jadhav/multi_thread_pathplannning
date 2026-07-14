@@ -6,26 +6,25 @@ AStar::AStar(const std::vector<std::vector<int>> &inputGrid) {
   height = inputGrid.size();
   width = inputGrid[0].size();
 
-  grid.resize(width * height);
+  grid.resize(width * height); // resize the grid vector to hold all cells
 
   for (int y = 0; y < height; y++)
     for (int x = 0; x < width; x++)
-      grid[index(x, y)] = inputGrid[y][x];
+      grid[index(x, y)] = inputGrid[y][x]; // fill the grid vector with the input grid data
 }
 
 int AStar::heuristic(int x1, int y1, int x2, int y2) const {
-  return std::abs(x1 - x2) + std::abs(y1 - y2);
+  return std::abs(x1 - x2) + std::abs(y1 - y2); // Manhattan distance heuristic
 }
 
-std::vector<Node> AStar::reconstructPath(const Node &start, const Node &goal,
-                                         Workspace &ws) {
+std::vector<Node> AStar::reconstructPath(const Node &start, const Node &goal, Workspace &ws) { // reconstruct the path from start to goal using the parent pointers stored in the workspace
   std::vector<Node> path;
 
   Node current = goal;
 
   while (!(current == start)) {
     path.push_back(current);
-    current = ws.parent[index(current.x, current.y)];
+    current = ws.parent[index(current.x, current.y)]; // get the parent of the current node from the workspace
   }
 
   path.push_back(start);

@@ -42,7 +42,6 @@ void run_experiment(
     std::uniform_int_distribution<> dy(0,grid_size-1);
 
     auto startTime = std::chrono::high_resolution_clock::now();
-
     for(int i = 0; i < searches; i++)
     {
         Node start{dx(gen), dy(gen)};

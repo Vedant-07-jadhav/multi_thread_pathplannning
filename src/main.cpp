@@ -33,47 +33,47 @@ int main()
 
     int numThreads = std::min(8u, std::thread::hardware_concurrency());
 
-    ThreadPool pool(numThreads);
+    ThreadPool pool(numThreads); // make thread pool with number of threads equal to hardware concurrency or 8, whichever is smaller
 
     std::random_device rd;
     std::mt19937 gen(rd());
 
-    std::uniform_int_distribution<> dx(0,width-1);
-    std::uniform_int_distribution<> dy(0,height-1);
+    std::uniform_int_distribution<> dx(0,width-1); // distribution for x-coordinates
+    std::uniform_int_distribution<> dy(0,height-1); // distribution for y-coordinates
 
-    std::atomic<int> completedTasks(0);
-    std::atomic<int> totalExpanded(0);
-    std::atomic<int> totalPathLength(0);
+    std::atomic<int> completedTasks(0); // number of completed tasks
+    std::atomic<int> totalExpanded(0); // total number of nodes expanded
+    std::atomic<int> totalPathLength(0); // total length of all paths found
 
-    auto startTime = std::chrono::high_resolution_clock::now();
+    auto startTime = std::chrono::high_resolution_clock::now(); // start time for the experiment
 
     for(int i = 0; i < searches; i++)
     {
-        Node start{dx(gen), dy(gen)};
-        Node goal{dx(gen), dy(gen)};
+        Node start{dx(gen), dy(gen)}; // random start node
+        Node goal{dx(gen), dy(gen)}; // random goal node
 
         pool.enqueue([&, start, goal]
         {
             // each worker thread gets its own workspace
-            thread_local Workspace ws(width * height);
+            thread_local Workspace ws(width * height); // workspace for the current thread
 
-            Result r = solver.solve(start, goal, ws);
+            Result r = solver.solve(start, goal, ws); // solve the pathfinding problem
 
-            totalExpanded += r.nodesExpanded;
-            totalPathLength += r.path.size();
+            totalExpanded += r.nodesExpanded; // update total nodes expanded
+            totalPathLength += r.path.size(); // update total path length
 
-            completedTasks++;
+            completedTasks++; // increment the number of completed tasks
         });
     }
 
     while(completedTasks < searches)
     {
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        std::this_thread::sleep_for(std::chrono::milliseconds(10)); // wait for all tasks to complete
     }
 
     auto endTime = std::chrono::high_resolution_clock::now();
 
-    std::chrono::duration<double> duration = endTime - startTime;
+    std::chrono::duration<double> duration = endTime - startTime; // calculate the total duration of the experiment
 
     std::cout << "Grid size: " << width << " x " << height << "\n";
     std::cout << "Searches run: " << searches << "\n";
