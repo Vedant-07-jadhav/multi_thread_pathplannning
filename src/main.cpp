@@ -2,8 +2,8 @@
 #include <chrono>
 #include <iostream>
 #include <random>
-#include <vector>
 #include <thread>
+#include <vector>
 
 #include "astar.h"
 #include "grid.h"
@@ -21,11 +21,9 @@ int main()
 
     std::vector<std::vector<int>> gridData(height, std::vector<int>(width));
 
-    for(int y = 0; y < height; y++)
-    {
-        for(int x = 0; x < width; x++)
-        {
-            gridData[y][x] = grid.isObstacle(x,y) ? 1 : 0;
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            gridData[y][x] = grid.isObstacle(x, y) ? 1 : 0;
         }
     }
 
@@ -38,8 +36,8 @@ int main()
     std::random_device rd;
     std::mt19937 gen(rd());
 
-    std::uniform_int_distribution<> dx(0,width-1); // distribution for x-coordinates
-    std::uniform_int_distribution<> dy(0,height-1); // distribution for y-coordinates
+    std::uniform_int_distribution<> dx(0, width - 1); // distribution for x-coordinates
+    std::uniform_int_distribution<> dy(0, height - 1); // distribution for y-coordinates
 
     std::atomic<int> completedTasks(0); // number of completed tasks
     std::atomic<int> totalExpanded(0); // total number of nodes expanded
@@ -47,13 +45,11 @@ int main()
 
     auto startTime = std::chrono::high_resolution_clock::now(); // start time for the experiment
 
-    for(int i = 0; i < searches; i++)
-    {
-        Node start{dx(gen), dy(gen)}; // random start node
-        Node goal{dx(gen), dy(gen)}; // random goal node
+    for (int i = 0; i < searches; i++) {
+        Node start { dx(gen), dy(gen) }; // random start node
+        Node goal { dx(gen), dy(gen) }; // random goal node
 
-        pool.enqueue([&, start, goal]
-        {
+        pool.enqueue([&, start, goal] {
             // each worker thread gets its own workspace
             thread_local Workspace ws(width * height); // workspace for the current thread
 
@@ -66,8 +62,7 @@ int main()
         });
     }
 
-    while(completedTasks < searches)
-    {
+    while (completedTasks < searches) {
         std::this_thread::sleep_for(std::chrono::milliseconds(10)); // wait for all tasks to complete
     }
 
